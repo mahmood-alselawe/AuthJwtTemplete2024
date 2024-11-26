@@ -1,11 +1,10 @@
 package com.takarub.AuthJwtTemplate.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.Date;
 
 @Data
 @Builder
@@ -13,7 +12,12 @@ import java.util.Date;
 @NoArgsConstructor
 public class AuthenticationResponse {
 
-    private String token;
+    @JsonProperty("access_Token")
+    private String accessToken;
+    @JsonProperty("expiration_time")
     private String expirationTime;
+    @JsonProperty("issued_at")
     private String issuedAt;
+    @JsonProperty("refresh_Token")
+    private String refreshToken;
 }
