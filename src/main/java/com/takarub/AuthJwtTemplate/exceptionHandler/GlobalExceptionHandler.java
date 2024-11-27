@@ -3,6 +3,7 @@ package com.takarub.AuthJwtTemplate.exceptionHandler;
 import com.takarub.AuthJwtTemplate.dto.ErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -85,4 +86,19 @@ public class GlobalExceptionHandler {
         // Only include fieldErrors if needed, in this case no fieldErrors for BadCredentialsException
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
+
+//    @ExceptionHandler(org.springframework.security.access.AccessDeniedException.class)
+//    public ResponseEntity<ErrorResponse> handleAccessDeniedException(org.springframework.security.access.AccessDeniedException ex) {
+//        ErrorResponse errorResponse = ErrorResponse.builder()
+//                .success(false)
+//                .status(HttpStatus.FORBIDDEN.value())
+//                .error(new ErrorResponse.Error(
+//                        HttpStatus.FORBIDDEN.value(),
+//                        "You do not have permission to access this resource."
+//                ))
+//                .fieldErrors(null) // No field-specific errors in this case
+//                .build();
+//
+//        return new ResponseEntity<>(errorResponse, HttpStatus.FORBIDDEN);
+//    }
 }
