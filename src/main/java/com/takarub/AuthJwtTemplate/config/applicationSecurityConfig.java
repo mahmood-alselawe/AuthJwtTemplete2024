@@ -43,13 +43,25 @@ public class applicationSecurityConfig {
     private final LogoutService logoutService;
     private final CustomAccessDeniedHandler customAccessDeniedHandler;
 
+    private static final String[] WHITE_LIST_URL = {"/api/v1/auth/**",
+            "/v2/api-docs",
+            "/v3/api-docs",
+            "/v3/api-docs/**",
+            "/swagger-resources",
+            "/swagger-resources/**",
+            "/configuration/ui",
+            "/configuration/security",
+            "/swagger-ui/**",
+            "/webjars/**",
+            "/swagger-ui.html"};
+
 
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(req -> req.requestMatchers("/api/v1/auth/**")
+                .authorizeHttpRequests(req -> req.requestMatchers(WHITE_LIST_URL)
                         .permitAll()
                         //                        .requestMatchers("").hasAuthority("")
                         .requestMatchers("/api/v1/Management/**").hasAnyRole(ADMIN.name(),MANAGER.name())
