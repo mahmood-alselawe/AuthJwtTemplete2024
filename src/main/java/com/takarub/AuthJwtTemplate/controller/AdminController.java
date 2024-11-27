@@ -1,5 +1,7 @@
 package com.takarub.AuthJwtTemplate.controller;
 
+import io.swagger.v3.oas.annotations.Hidden;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -8,6 +10,9 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/v1/admin")
 @RequiredArgsConstructor
 @PreAuthorize("hasRole('ADMIN')")
+@SecurityRequirement(
+        name = "bearerAuth"
+)
 public class AdminController {
 
     @GetMapping
@@ -18,6 +23,8 @@ public class AdminController {
 
     @PostMapping
     @PreAuthorize("hasAuthority('admin:create')")
+    //to hidden api for outside world to see this endpoint
+    @Hidden
     public String Post(){
         return "Post ADMIN:READ&&READ";
     }
