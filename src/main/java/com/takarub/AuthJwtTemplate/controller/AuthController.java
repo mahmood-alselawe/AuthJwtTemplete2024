@@ -1,9 +1,11 @@
 package com.takarub.AuthJwtTemplate.controller;
 
 import com.takarub.AuthJwtTemplate.dto.AuthenticationResponse;
+import com.takarub.AuthJwtTemplate.dto.ChangePasswordForgot;
 import com.takarub.AuthJwtTemplate.dto.LoginRequest;
 import com.takarub.AuthJwtTemplate.dto.RegisteredRequest;
 import com.takarub.AuthJwtTemplate.service.AuthService;
+import com.takarub.AuthJwtTemplate.service.ForgotService;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
@@ -13,10 +15,7 @@ import lombok.RequiredArgsConstructor;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 
@@ -26,6 +25,8 @@ import java.io.IOException;
 public class AuthController {
 
     private final AuthService authService;
+
+    private final ForgotService forgotService;
 
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(
@@ -43,6 +44,23 @@ public class AuthController {
     public ResponseEntity<AuthenticationResponse> refreshToken(HttpServletRequest request) {
         AuthenticationResponse response = authService.refreshToken(request);
         return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/verifyMail/{email}")
+    public ResponseEntity<?> verifyMail(@PathVariable String email){
+        return forgotService.verifyEmail(email);
+    }
+
+    @PostMapping("/verifyOtp/{otp}/{email}")
+    public ResponseEntity<String> verifyOtp(@PathVariable Integer otp,
+                                            @PathVariable String email){
+        return forgotService.verifyOtp(otp, email);
+    }
+
+    @PostMapping("/changePassword/{email}")
+    public ResponseEntity<String> changePasswordHandler(@RequestBody ChangePasswordForgot changePassword,
+                                                        @PathVariable String email){
+        return forgotService.changePasswordHandler(changePassword,email);
     }
 
 

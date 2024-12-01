@@ -12,6 +12,17 @@ spring:
     url: jdbc:mysql://127.0.0.1:3306/ProductForThar1?serverTimezone=UTC
     username: root
     password: root123
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: "mahmoodselawe5@gmail.com"
+    password: "buys qvpc ifbr dqhn"
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
 
 application:
   security:
