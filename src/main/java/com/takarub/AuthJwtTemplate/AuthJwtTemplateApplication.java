@@ -18,43 +18,6 @@ public class AuthJwtTemplateApplication {
 		SpringApplication.run(AuthJwtTemplateApplication.class, args);
 	}
 
-//	@Bean
-//	public CommandLineRunner commandLineRunner(
-//			AuthService authService
-//	){
-//		return args -> {
-////			RegisteredRequest admin = RegisteredRequest
-////					.builder()
-////					.firstName("admin")
-////					.lastName("admin")
-////					.email("Admin@gmail.com")
-////					.passWord("password")
-////					.role(Role.ADMIN)
-////					.build();
-////			AuthenticationResponse register = authService.register(admin);
-////			System.out.println("Access Token : " + register.getAccessToken());
-////			RegisteredRequest manage = RegisteredRequest
-////					.builder()
-////					.firstName("manage")
-////					.lastName("manage")
-////					.email("manage@gmail.com")
-////					.passWord("password")
-////					.role(Role.MANAGER)
-////					.build();
-////			AuthenticationResponse registerMANAGER = authService.register(manage);
-////			System.out.println("Access Token : " + registerMANAGER.getAccessToken());
-//			RegisteredRequest user = RegisteredRequest
-//					.builder()
-//					.firstName("USER")
-//					.lastName("USER")
-//					.email("USER@gmail.com")
-//					.passWord("password")
-//					.role(Role.USER)
-//					.build();
-//			AuthenticationResponse register = authService.register(user);
-//			System.out.println("USER Access Token : " + register.getAccessToken());
-//
-//		};
-//	}
+
 
 }
