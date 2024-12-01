@@ -1,5 +1,6 @@
 package com.takarub.AuthJwtTemplate.dto;
 
+import com.takarub.AuthJwtTemplate.model.Role;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -26,5 +27,9 @@ public class RegisteredRequest {
 
     @Size(min = 6, message = "Password should be at least 6 characters long")
     private String passWord;
+
+    private Role role;
+
+
 }
 // here we should to valid like notNull Email Password all thank
