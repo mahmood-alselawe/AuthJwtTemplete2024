@@ -10,4 +10,6 @@ public class AuthJwtTemplateApplication {
 		SpringApplication.run(AuthJwtTemplateApplication.class, args);
 	}
 
+
+
 }
